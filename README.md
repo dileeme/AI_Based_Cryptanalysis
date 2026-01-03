@@ -2,5 +2,5 @@
 
 This repository contains implementation of classical ciphers and AI-based cryptanalysis techniques used in cryptography. 
 
-Name: Dilen Shankar </br>
-Reg No: 2023503017
+<b>Name:</b> Dilen Shankar </br>
+<b>Reg No:</b> 2023503017
