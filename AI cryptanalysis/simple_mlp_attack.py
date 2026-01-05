@@ -1,16 +1,13 @@
-import torch
-import torch.nn as nn
-class Generator(nn.Module):
-    def __init__(self):
-        super().__init__()
-        self.net=nn.Sequential(nn.Linear(100,128),nn.ReLU(),nn.Linear(128,26))
-    def forward(self,x):return self.net(x)
-class Discriminator(nn.Module):
-    def __init__(self):
-        super().__init__()
-        self.net=nn.Sequential(nn.Linear(26,128),nn.ReLU(),nn.Linear(128,1),nn.Sigmoid())
-    def forward(self,x):return self.net(x)
-G=Generator()
-D=Discriminator()
-print("GAN skeleton initialized")
-
+from sklearn.neural_network import MLPClassifier
+def vec(t):
+    v=[0]*26
+    for c in t:v[ord(c)-65]+=1
+    return v
+english=["THISISADEMONSTRATION","HELLOWORLD"]
+randoms=["QZXMVPLKJHGF","ASDFGHJKL"]
+X=[vec(t) for t in english+randoms]
+y=[1]*len(english)+[0]*len(randoms)
+clf=MLPClassifier(hidden_layer_sizes=(20,),max_iter=500)
+clf.fit(X,y)
+test="THISISADEMONSTRATION"
+print(clf.predict_proba([vec(test)])[0][1])
